@@ -1,0 +1,15 @@
+infile = fopen("binout.bin");
+rows = 80
+cols = 22016
+freqstep = 3906
+startfreq = 900e6
+endfreq = 929996107
+values = fread(infile,[cols,rows],'single')
+
+
+freqs = linspace(startfreq, endfreq, freqstep)
+
+plt = waterfall(values); xlabel=('Frequency'); ylabel('time'); zlabel("dBm");
+yticklabels(freqs);
+
+set(gca,'XLim',[0 22016],'XTick',[0:43:22016])
