@@ -1,4 +1,5 @@
 import subprocess, sys, getopt
+import matplotlib.pyplot as plt
 import numpy as np
 #argvs estao certos
 
@@ -7,17 +8,15 @@ def main():
     gain = int(sys.argv[2])
     outfile = sys.argv[3]
     read_dev(time,gain,outfile)
-def output():
+#funcao de acesso ao dispositivo
 
-essa parte eu sei que funciona
-
-def read_dev(time,gain,outfile): funcao de acesso ao dispositivo
-    freq_arg = '-f '+str(898e6)+':'+str(932e6)
+def read_dev(time,gain,outfile):
+    freq_arg = '-f '+str(900e6)+':'+str(950e6)
     gain_arg = '-g '+str(gain)
     time_arg = '-e '+str(time)+'m'
     file_arg = '-m '+str(outfile)
     print ("executando fftw por " + str(time) +" minutos com ganho de "+str(gain/10)+" dB")
-    subprocess.run(["rtl_power_fftw", freq_arg, "-b 512", gain_arg, time_arg,"-o 66" ,file_args])
+    subprocess.run(["rtl_power_fftw", freq_arg, "-b 65536", gain_arg,time_arg,"-o 66" ,file_arg])
     parse_meta(outfile)
 
 def parse_meta(infile): #analise dos metadados do scan
@@ -31,11 +30,17 @@ def parse_meta(infile): #analise dos metadados do scan
         propname.append(field[1].rstrip('\n')) #talvez as propriedades vem sempre na mesma ordem
     meta.close()
     props = dict(zip(propname,propval))
-    print(props)
 
-    with open(filename, 'rb') as f: isso aqui eh pra puxar as fft
-    data = np.fromfile(f, dtype=np.float32)
-    array = np.reshape(data, [11000, 11000])
+    #isso aqui eh pra puxar as fft
+    Fs = 2e6 #2MHz
+    NFFT = 65536
+    binfile = "./"+infile+".bin"
+    with open(binfile, 'rb') as f:
+        data = np.fromfile(f, dtype=np.float32)
+    Pxx, freqs, bins, img = plt.specgram(data, NFFT=NFFT, Fs=Fs)
+    plt.grid(True)
+    plt.show()
+
 
 if __name__ == '__main__':
     main()
