@@ -4,3 +4,8 @@ docs/
 *.pdf
 *.png
 tk
+*.dat
+*.met
+*.bin
+*.txt
+*.csv
