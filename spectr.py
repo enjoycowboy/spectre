@@ -2,6 +2,9 @@ import subprocess, sys, getopt
 import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
+from matplotlib import cm
+from matplotlib.ticker import EngFormatter
+from matplotlib.widgets import Cursor
 
 def main():
     time = int(sys.argv[1])
@@ -27,7 +30,7 @@ def render(filename): #analise dos metadados do scan
     f= open(filename+".met", "r")
 
     propval = []
-    propname = ["nbins","nscans","freqstart","freqend","stepfreq","int_time","duration","timestart","timeend"]
+    propname = ["nbins","nscans","freqstart","freqend","freqstep","int_time","duration","timestart","timeend"]
 
     for line in f:
         field = line.split(" # ")
@@ -42,12 +45,19 @@ def render(filename): #analise dos metadados do scan
     props = dict(zip(propname,propval))
     data.shape=(-1,props["nbins"])
     print (props)
-    x = np.arange(props["freqstart"], props["freqend"],props["freqstep"])
-    y = range(nscans)
+# coloca nas coordenadas corretas
+    binstep = (props['freqend'] - props['freqstart'])/props['nbins']
+    x = np.arange(props["freqstart"], props["freqend"],binstep)
+    y = range(props["nscans"])
+# formatacao dos ticks 
     xmesh, ymesh = np.meshgrid(x,y)
     fig,ax = plt.subplots()
-    CS = ax.contourf(xmesh, ymesh, data, origin="upper", interpolation='bilinear')
-    ax.set_xlabel("Frequência")
+    frm  = EngFormatter(unit='Hz')
+    ax.xaxis.set_major_formatter(frm)
+#função cursor
+    cursor = Cursor(ax, useblit=True, color='red', linewidth=2)
+    CS = ax.contour(xmesh, ymesh, data, antialiased = True)
+
     colorbar = fig.colorbar(CS)
     plt.show()
 if __name__ == '__main__':
