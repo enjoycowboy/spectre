@@ -3,13 +3,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 
-def main():
-    time = int(sys.argv[1])
+def read_dev(time):
     dt = datetime.now()
     outfile = "scan_"+ dt.strftime("%Y-%m-%d_%Hh%Mm%Ss")
-    read_dev(time,outfile)
-
-def read_dev(time, outfile):
     gain = 496 # /10dB
     freq_arg = '-f '+str(898e6)+':'+str(920e6)
     gain_arg = '-g '+str(gain)
@@ -17,7 +13,6 @@ def read_dev(time, outfile):
     file_arg = '-m '+str(outfile)
     print ("executando fftw por " + str(time) +" minutos com ganho de "+str(gain/10)+" dB")
     subprocess.run(["rtl_power_fftw", freq_arg, "-b 8192", gain_arg,time_arg,"-o 70" ,file_arg])
-    render(outfile)
 
 def render(filename): #analise dos metadados do scan
     with open(filename+".bin", 'rb') as f:
@@ -43,12 +38,10 @@ def render(filename): #analise dos metadados do scan
     data.shape=(-1,props["nbins"])
     print (props)
     x = np.arange(props["freqstart"], props["freqend"],props["freqstep"])
-    y = range(nscans)
+    y = range(props['nscans'])
     xmesh, ymesh = np.meshgrid(x,y)
     fig,ax = plt.subplots()
     CS = ax.contourf(xmesh, ymesh, data, origin="upper", interpolation='bilinear')
     ax.set_xlabel("Frequência")
     colorbar = fig.colorbar(CS)
     plt.show()
-if __name__ == '__main__':
-    main()
