@@ -88,6 +88,13 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>PushButton</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
@@ -124,7 +131,7 @@
    <slot>browseSlot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
+     <x>239</x>
      <y>337</y>
     </hint>
     <hint type="destinationlabel">
@@ -149,9 +156,43 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>slice</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>invokeSlicer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>305</x>
+     <y>327</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>310</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>measure</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>measureMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>419</x>
+     <y>333</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>439</x>
+     <y>343</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>browseSlot()</slot>
   <slot>spawnOptions()</slot>
+  <slot>invokeSlicer()</slot>
+  <slot>measureMode()</slot>
  </slots>
 </ui>
