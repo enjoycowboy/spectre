@@ -24,7 +24,7 @@ physical_constants;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Hairpin setup
-hairpin.length = 38;    % Elements length
+hairpin.length = 44.127;    % Elements length
 hairpin.feed = 10;      % Feeder length
 hairpin.margin = 10;    % Left/Right/Top margin
 hairpin.width = 2.54;   % Width of the traces
@@ -46,7 +46,7 @@ copper.conductivity = 56e6; % Metal conductivity
 copper.thickness = 35e-6;   % Metal thickness in m
 
 % Feeding setup
-feed.R = 50;         % Feed resistance
+feed.R = 75;         % Feed resistance
 feed.f_center = 1e9; % Feed center frequency
 feed.f_cut = 250e6;  % Feed -20 dB cut frequency
 
@@ -189,7 +189,7 @@ s21 = p{2}.uf.ref./ p{1}.uf.inc;
 plot(f/1e9,20*log10(abs(s11)),'k-','LineWidth',2);
 hold on;
 grid on;
-plot(f/1e9,20*log10(abs(s21)),'r--','LineWidth',2);
+plot(f/1e9,20*log10(abs(s21)),'r-','LineWidth',2);
 title( 'S_{11} and S_{21} parameters' );
 legend('S_{11}','S_{21}');
 ylabel('S-Parameter (dB)','FontSize',12);
