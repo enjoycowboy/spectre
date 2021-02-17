@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
-
+import scanSettings
 
 class Ui_MainWindow(object):
 	def setupUi(self, MainWindow):
@@ -85,8 +85,7 @@ class Ui_MainWindow(object):
 		self.measure.setText(_translate("MainWindow", "Measure"))
 		self.report.setText(_translate("MainWindow", "Report"))
 		self.pushButton.setText(_translate("MainWindow", "PushButton"))
-		self.label.setText(_translate("MainWindow", "Debugger"))
-	#debug
+		self.label.setText(_translate("MainWindow", "Debugger: "))
 	#funcionalidade do debugger:
 
 	def debugPrint(self, msg):
@@ -102,9 +101,20 @@ class Ui_MainWindow(object):
 
 	def spawnOptions(self):
 		self.debugPrint("options spawned")
+		self.dialog = settingsDialog()
+		self.dialog.show()
+
 
 	def measureMode(self):
 		self.debugPrint("measure moded")
+
+
+class settingsDialog(QtWidgets.QMainWindow, scanSettings.Ui_ScanSettings):
+	def __init__(self, parent=None):
+		super(settingsDialog, self).__init__(parent)
+		self.setupUi(self)
+
+
 if __name__ == "__main__":
 	import sys
 	app = QtWidgets.QApplication(sys.argv)
