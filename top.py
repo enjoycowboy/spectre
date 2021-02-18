@@ -2,6 +2,7 @@ import scanSettings
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QDialog
 
 
 import sys
@@ -9,16 +10,20 @@ import spectr
 import mainWindow
 
 
-class settingsDialog(QtWidgets.QMainWindow, scanSettings.Ui_ScanSettings):
+class settingsDialog(QtWidgets.QDialog, scanSettings.Ui_ScanSettings):
+
+	
 	def __init__(self, parent=None):
 		super(settingsDialog, self).__init__(parent)
 		self.setupUi(self)
+		self.values = []
 
+	def getValues(self):
+		return self.values
 	def okay(self):
-		values = [self.timeSlider.value(), self.gainSlider.value() * 10,
+		self.values = [self.timeSlider.value(), self.gainSlider.value() * 10,
 			int(str(self.comboBox.currentText()))]
-		print(str(values))
-		self.close()
+		self.accept()
 
 	def cancel(self):
 		self.close()
@@ -27,6 +32,7 @@ class App(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 	def __init__ (self, parent=None):
 		super(App, self).__init__(parent)
 		self.setupUi(self)
+		
 		#slots
 	def browseSlot(self):
 		self.debugPrint("clicked on load file")
@@ -40,6 +46,11 @@ class App(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 		self.debugPrint("options spawned")
 		self.dialog = settingsDialog()
 		self.dialog.show()
+		if (self.dialog.exec_()):
+			self.debugPrint(str(self.dialog.values))
+
+		
+		
 
 	def debugPrint(self, msg):
 		self.textBrowser.append(msg)
