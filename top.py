@@ -33,11 +33,17 @@ class App(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 		super(App, self).__init__(parent)
 		self.setupUi(self)
 		
-		#slots
+	#	#slots
 	def browseSlot(self):
 		self.debugPrint("clicked on load file")
-		fname = QFileDialog.getOpenFileName()
-		self.debugPrint("file to be loaded: " + str(fname))
+		ftype = "Scans (*.bin)"
+		qfd = QFileDialog()
+		path = "./"
+		title = "Open File"
+		browse = QFileDialog.getOpenFileName(qfd, title, path, ftype)
+		self.debugPrint("Loading file: " + str(browse[0]))
+		fname = str(browse[0])
+		spectr.render(fname)
 
 	def invokeSlicer(self):
 		self.debugPrint("slicer invoked")
@@ -48,6 +54,7 @@ class App(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 		self.dialog.show()
 		if (self.dialog.exec_()):
 			self.debugPrint(str(self.dialog.values))
+
 
 		
 		
