@@ -116,13 +116,6 @@ class Ui_ScanSettings(object):
 		self.gainSlider.sliderMoved['int'].connect(self.gainValue.setNum)
 		QtCore.QMetaObject.connectSlotsByName(ScanSettings)
 
-	#slots
-	def okay(self):
-		values = [self.timeSlider.value(), self.gainSlider.value() * 10, int(str(self.comboBox.currentText()))]
-		print (str(values))
-
-	def cancel(self):
-		return
 
 	def retranslateUi(self, ScanSettings):
 		_translate = QtCore.QCoreApplication.translate

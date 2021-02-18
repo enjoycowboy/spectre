@@ -9,8 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QFileDialog
-import scanSettings
 
 class Ui_MainWindow(object):
 	def setupUi(self, MainWindow):
@@ -88,31 +86,7 @@ class Ui_MainWindow(object):
 		self.label.setText(_translate("MainWindow", "Debugger: "))
 	#funcionalidade do debugger:
 
-	def debugPrint(self, msg):
-		self.textBrowser.append(msg)
-	#slots
-	def browseSlot(self):
-		self.debugPrint("clicked on load file")
-		fname = QFileDialog.getOpenFileName()
-		self.debugPrint("file to be loaded: " + str(fname))
 
-	def invokeSlicer(self):
-		self.debugPrint("slicer invoked")
-
-	def spawnOptions(self):
-		self.debugPrint("options spawned")
-		self.dialog = settingsDialog()
-		self.dialog.show()
-
-
-	def measureMode(self):
-		self.debugPrint("measure moded")
-
-
-class settingsDialog(QtWidgets.QMainWindow, scanSettings.Ui_ScanSettings):
-	def __init__(self, parent=None):
-		super(settingsDialog, self).__init__(parent)
-		self.setupUi(self)
 
 
 if __name__ == "__main__":
