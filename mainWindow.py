@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from mplwidget import MplWidget
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -88,7 +88,7 @@ class Ui_MainWindow(object):
         self.measure.setText(_translate("MainWindow", "Measure"))
         self.report.setText(_translate("MainWindow", "Report"))
         self.pushButton.setText(_translate("MainWindow", "PushButton"))
-from mplwidget import MplWidget
+
 
 
 if __name__ == "__main__":

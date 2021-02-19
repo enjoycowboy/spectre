@@ -47,13 +47,13 @@ def render(filename): #analise dos metadados do scan
 	x = np.arange(props["freqstart"], props["freqend"],binstep)
 	y = range(props['nscans'])
 	xmesh, ymesh = np.meshgrid(x,y)
-	fig,ax = plt.subplots()
+	fig,ax = plt.subplots(squeeze=True)
 	frm  = EngFormatter(unit='Hz')
 	ax.xaxis.set_major_formatter(frm)
+#	return xmesh, ymesh, data, ax
 #função cursor
 #	cursor = Cursor(ax, useblit=True, color='red', linewidth=2)
 	CS = ax.contour(xmesh, ymesh, data, antialiased = True)
 	colorbar = fig.colorbar(CS)
-	plt.show()
-	ax.set_xlim(ax, left = props["freqstart"], right = props["freqend"])
-
+	#ax.set_xlim(ax, left = props["freqstart"], right = props["freqend"])
+	return fig, ax, CS
