@@ -69,10 +69,6 @@ class App(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 
 #metodo pra instanciar a classe da janela de configuração
 
-
-
-
-
 def main():
 	app = QApplication(sys.argv)
 	form = App()

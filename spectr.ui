@@ -29,83 +29,117 @@
    <string>Spectrox</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <widget class="QTextBrowser" name="textBrowser">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>610</y>
+      <width>701</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>590</y>
+      <width>59</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Debugger</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="screen" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>721</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>CrossCursor</cursorShape>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qradialgradient(spread:repeat, cx:0.5, cy:0.5, radius:0.077, fx:0.5, fy:0.5, stop:0 rgba(0, 169, 255, 147), stop:0.497326 rgba(0, 0, 0, 147), stop:1 rgba(0, 169, 255, 147));</string>
+    </property>
+   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>0</y>
+      <y>560</y>
       <width>701</width>
-      <height>631</height>
+      <height>26</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QGraphicsView" name="graphicsView"/>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="scan">
-         <property name="text">
-          <string>Scan Now</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="load">
-         <property name="text">
-          <string>Load Scan</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="slice">
-         <property name="text">
-          <string>Slice</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="measure">
-         <property name="text">
-          <string>Measure</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="report">
-         <property name="text">
-          <string>Report</string>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-         <property name="default">
-          <bool>false</bool>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QLabel" name="label">
+      <widget class="QPushButton" name="scan">
        <property name="text">
-        <string>Debugger</string>
+        <string>Scan Now</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QTextBrowser" name="textBrowser"/>
+      <widget class="QPushButton" name="load">
+       <property name="text">
+        <string>Load Scan</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="slice">
+       <property name="text">
+        <string>Slice</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="measure">
+       <property name="text">
+        <string>Measure</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="report">
+       <property name="text">
+        <string>Report</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -125,46 +159,14 @@
  <resources/>
  <connections>
   <connection>
-   <sender>load</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>browseSlot()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>239</x>
-     <y>337</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>199</x>
-     <y>59</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>scan</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>spawnOptions()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>67</x>
-     <y>324</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>104</x>
-     <y>342</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>slice</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>invokeSlicer()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>305</x>
-     <y>327</y>
+     <x>357</x>
+     <y>589</y>
     </hint>
     <hint type="destinationlabel">
      <x>310</x>
@@ -179,12 +181,44 @@
    <slot>measureMode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>419</x>
-     <y>333</y>
+     <x>477</x>
+     <y>589</y>
     </hint>
     <hint type="destinationlabel">
      <x>439</x>
      <y>343</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scan</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>spawnOptions()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>59</x>
+     <y>589</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>104</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>load</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>browseSlot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>236</x>
+     <y>589</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>59</y>
     </hint>
    </hints>
   </connection>
