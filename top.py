@@ -3,13 +3,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtWidgets import QDialog
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as Canvas
+# from matplotlib.figure import Figure
+# from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as Canvas
 
-import matplotlib
+# import matplotlib
 
-matplotlib.use('QT5Agg')
-
+# matplotlib.use('QT5Agg')
+import pyqtgraph as pg
 import sys
 import spectr
 import mainWindow
@@ -49,7 +49,7 @@ class App(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 		browse = QFileDialog.getOpenFileName(qfd, title, path, ftype)
 		self.debugPrint("Loading file: " + str(browse[0]))
 		fname = str(browse[0])
-		self.scrdraw(fname)
+		#self.scrdraw(fname)
 
 	def invokeSlicer(self):
 		self.debugPrint("slicer invoked")
@@ -67,11 +67,11 @@ class App(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 	def measureMode(self):
 		self.debugPrint("measure moded")
 
-	def scrdraw(self, fname):
-		matplotlib.interactive(False)
-		fig, ax, cs = spectr.render(fname)	
-		self.screen.canvas.figure = fig
-		self.screen.canvas.draw()
+	# def scrdraw(self, fname):
+	# 	matplotlib.interactive(False)
+	# 	fig, ax, cs = spectr.render(fname)	
+	# 	self.screen.canvas.figure = fig
+	# 	self.screen.canvas.draw()
 		
 
 def main():

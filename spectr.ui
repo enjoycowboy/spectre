@@ -55,7 +55,7 @@
      <string>Debugger</string>
     </property>
    </widget>
-   <widget class="MplWidget" name="screen" native="true">
+   <widget class="PlotWidget" name="screen" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -158,9 +158,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MplWidget</class>
+   <class>PlotWidget</class>
    <extends>QWidget</extends>
-   <header>mplwidget.h</header>
+   <header>pyqtgraph</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

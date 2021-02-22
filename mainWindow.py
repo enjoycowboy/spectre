@@ -9,7 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from mplwidget import MplWidget
+from pyqtgraph import PlotWidget
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -27,7 +28,7 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(10, 590, 59, 16))
         self.label.setObjectName("label")
-        self.screen = MplWidget(self.centralwidget)
+        self.screen = PlotWidget(self.centralwidget)
         self.screen.setGeometry(QtCore.QRect(0, 0, 721, 551))
         self.screen.setCursor(QtGui.QCursor(QtCore.Qt.CrossCursor))
         self.screen.setMouseTracking(True)
@@ -88,7 +89,6 @@ class Ui_MainWindow(object):
         self.measure.setText(_translate("MainWindow", "Measure"))
         self.report.setText(_translate("MainWindow", "Report"))
         self.pushButton.setText(_translate("MainWindow", "PushButton"))
-
 
 
 if __name__ == "__main__":
