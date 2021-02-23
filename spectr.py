@@ -1,5 +1,5 @@
 import subprocess, sys, getopt
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 from matplotlib import cm
@@ -17,7 +17,7 @@ def read_dev(time):
 	print ("executando fftw por " + str(time) +" minutos com ganho de "+str(gain/10)+" dB")
 	subprocess.run(["rtl_power_fftw", freq_arg, "-b 8192", gain_arg,time_arg,"-o 70" ,file_arg])
 
-def render(filename): #analise dos metadados do scan
+def fileparse(filename): #analise dos metadados do scan 
 	with open(filename, 'rb') as f:
 		data = np.fromfile(f, dtype=np.float32)
 
@@ -41,19 +41,14 @@ def render(filename): #analise dos metadados do scan
 	f.close()
 	props = dict(zip(propname,propval))
 	data.shape=(-1,props["nbins"])
-	print (props)
+	print(props)
+
 
 	binstep = (props['freqend'] - props['freqstart'])/props['nbins']
 	x = np.arange(props["freqstart"], props["freqend"],binstep)
 	y = range(props['nscans'])
-	xmesh, ymesh = np.meshgrid(x,y)
-	fig,ax = plt.subplots()
-	frm  = EngFormatter(unit='Hz')
-	ax.xaxis.set_major_formatter(frm)
-#função cursor
-#	cursor = Cursor(ax, useblit=True, color='red', linewidth=2)
-	CS = ax.contour(xmesh, ymesh, data, antialiased = True)
-	colorbar = fig.colorbar(CS)
-	plt.show()
-	ax.set_xlim(ax, left = props["freqstart"], right = props["freqend"])
+	xmesh,ymesh = np.meshgrid(x,y, sparse=True)
+	return data
+	
 
+# def render_graph(xmesh,ymesh,z):
